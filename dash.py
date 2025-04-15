@@ -15,11 +15,16 @@ property_type_flags = ['Office', 'Retail', 'Industrial', 'Healthcare', 'Other',
 
 @st.cache_data
 def load_data():
-    with zipfile.ZipFile("data.zip") as z:
-        with z.open("sales_data.csv") as f:
-            sales_df = pd.read_csv(f)
-        with z.open("lease_data.csv") as f:
-            lease_df = pd.read_csv(f)
+    # Read zipped lease CSV
+    with zipfile.ZipFile("lease_data.csv.zip") as lease_zip:
+        with lease_zip.open("lease_data.csv") as lease_file:
+            lease_df = pd.read_csv(lease_file)
+
+    # Read zipped sales CSV
+    with zipfile.ZipFile("sales_data.csv.zip") as sales_zip:
+        with sales_zip.open("sales_data.csv") as sales_file:
+            sales_df = pd.read_csv(sales_file)
+
     return sales_df, lease_df
 
 sbert_model = SentenceTransformer("all-MiniLM-L6-v2")
