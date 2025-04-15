@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pydeck as pdk
+import zipfile
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -10,10 +11,15 @@ st.set_page_config(layout="wide")
 property_type_flags = ['Office', 'Retail', 'Industrial', 'Healthcare', 'Other',
                        'Land', 'Investment', 'Multifamily', 'Hospitality']
 
+
+
 @st.cache_data
 def load_data():
-    sales_df = pd.read_csv("sales_data.csv")
-    lease_df = pd.read_csv("lease_data.csv")
+    with zipfile.ZipFile("data.zip") as z:
+        with z.open("sales_data.csv") as f:
+            sales_df = pd.read_csv(f)
+        with z.open("lease_data.csv") as f:
+            lease_df = pd.read_csv(f)
     return sales_df, lease_df
 
 sbert_model = SentenceTransformer("all-MiniLM-L6-v2")
