@@ -156,7 +156,7 @@ if st.sidebar.button("Get Recommendations"):
         st.subheader("🗺️ Property Locations")
         if "LATITUDE" in output.columns and "LONGITUDE" in output.columns:
             map_data = output.dropna(subset=["LATITUDE", "LONGITUDE"]).copy()
-            map_data["tooltip"] = map_data["ADDRESS"] + ", " + map_data["CITY"] + " (" + map_data["Deal Score"].round(2).astype(str) + ")"
+            map_data["tooltip"] = map_data["ADDRESS"] + ", " + map_data["CITY"] + " (" + map_data["DealScore"].round(2).astype(str) + ")"
 
             layer = pdk.Layer(
                 "ScatterplotLayer",
