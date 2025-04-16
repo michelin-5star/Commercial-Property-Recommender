@@ -122,9 +122,9 @@ if st.sidebar.button("Get Recommendations"):
         st.success("Top Recommended Properties:")
         cols = ["ID", "ADDRESS", "CITY", "STATE_ABBR", "final_score", "BUILDING_SF_Modified_Numeric_Final"] + prop_types
         if prop_type == "lease":
-            cols += ["PredLow", "PredHigh", "rate_per_sf_year", "LeaseDealScore"]
+            cols += ["PredLow", "PredHigh", "rate_per_sf_year", "DealScore"]
             price_col = "rate_per_sf_year"
-            score_col = "LeaseDealScore"
+            score_col = "DealScore"
             price_range = (0, 100)
         else:
             cols += ["PredLow", "PredHigh", "PRICE_Modified", "DealScore"]
