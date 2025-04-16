@@ -91,7 +91,7 @@ sales_df, lease_df = load_data()
 
 st.sidebar.header("User Preferences")
 prop_type = st.sidebar.selectbox("Property Type", ["sale", "lease"])
-state = st.sidebar.text_input("State Abbreviation", value="TX")
+state = st.sidebar.text_input("State Abbreviation", value="CA")
 
 if prop_type == "lease":
     min_price = st.sidebar.number_input("Min Lease Rate ($/SF/Year)", value=10.0, min_value=0.0, step=1.0)
